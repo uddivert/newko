@@ -6,8 +6,6 @@ bool init()
     const int SCREEN_WIDTH = 640;
     const int SCREEN_HEIGHT = 480;
 
-    SDL_Window *mainWindow = NULL;
-    SDL_Surface *mainScreenSurface = NULL; // uses sofware acceleration
     bool init_flag = false;
 
     if (SDL_Init(SDL_INIT_VIDEO)  < 0) {

@@ -2,7 +2,7 @@
 
 bool loadmedia(void)
 {
-    bool load_flag = true;;
+    bool load_flag = true;
     screenSurface = SDL_LoadBMP
         ("./resources/hello_world.bmp");
     if (screenSurface == NULL) {
