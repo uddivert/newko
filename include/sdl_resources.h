@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 
-// Your header file contents go here
+// header file contents go here
 bool init(void);
 
 // load media

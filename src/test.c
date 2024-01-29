@@ -17,11 +17,6 @@ int main(int argc, char* args[])
     } else if (!loadmedia()) {
         printf("Media load error");
     } else {
-        //Apply the image
-        SDL_BlitSurface(screenSurface, NULL, mainScreenSurface, NULL);
-        //Update the surface
-        SDL_UpdateWindowSurface(mainWindow);
-
         SDL_Event e; 
         bool nQuit = true;
         while(nQuit) {
@@ -29,6 +24,9 @@ int main(int argc, char* args[])
             if (e.type == SDL_QUIT) {
                 nQuit = false;
             } else if (e.type == SDL_WINDOWEVENT) {
+                //Apply the image
+                SDL_BlitSurface(screenSurface, NULL, mainScreenSurface, NULL);
+                //Update the surface
                 SDL_UpdateWindowSurface(mainWindow);
             } // else
         } // while
