@@ -9,6 +9,7 @@ bool init(void);
 
 // load media
 bool loadmedia(void);
+SDL_Surface* loadSurface(char *path);
 
 // free resources and close
 void sdlfree(void);
@@ -18,6 +19,7 @@ extern bool load_flag; // load success flag
 extern SDL_Window *mainWindow;
 extern SDL_Surface *mainScreenSurface; // uses sofware acceleration
 extern SDL_Surface *screenSurface; 
+extern SDL_Surface* optimizedSurface; 
 
 #endif // SDL_RESOURCES_H
 

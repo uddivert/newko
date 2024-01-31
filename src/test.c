@@ -25,14 +25,12 @@ int main(int argc, char* args[])
                 nQuit = false;
             } else if (e.type == SDL_WINDOWEVENT) {
                 //Apply the image
-                /*
                 SDL_Rect stretchRect;
                 stretchRect.x = 0;
                 stretchRect.y = 0;
-                stretchRect.w = 0;
-                stretchRect.h = 0;
-                */
-                SDL_BlitSurface(screenSurface, NULL, mainScreenSurface, NULL /*&stretchRect*/);
+                stretchRect.w = SCREEN_WIDTH;
+                stretchRect.h = SCREEN_HEIGHT;
+                SDL_BlitScaled(screenSurface, NULL, mainScreenSurface, &stretchRect );
                 //Update the surface
                 SDL_UpdateWindowSurface(mainWindow);
             } // else
