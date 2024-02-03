@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sdl_resources.h"
 
 bool init()
@@ -16,8 +17,22 @@ bool init()
         if (mainWindow == NULL ) {
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
         } else {
-            mainScreenSurface = SDL_GetWindowSurface(mainWindow);
             init_flag = true;
+            #ifdef SOFT_RENDER
+            /* create surface context and send to main window*/
+            mainScreenSurface = SDL_GetWindowSurface(mainWindow);
+            #elif HARD_RENDER
+            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+            if( gRenderer == NULL ) {
+                printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+                success = false;
+            } else {
+                //Initialize renderer color
+                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            } // else
+            #else 
+            init_flag = false;
+            #endif
         } // else
     } // else
     return init_flag;

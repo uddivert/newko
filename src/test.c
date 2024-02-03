@@ -7,8 +7,18 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 SDL_Window *mainWindow = NULL;
+
+/** if using software renderer*/
+#ifdef SOFT_RENDER
 SDL_Surface *mainScreenSurface = NULL;
 SDL_Surface *screenSurface = NULL; 
+#endif
+
+#ifdef HARD_RENDER
+/** if using hardware renderer*/
+SDL_Renderer *gRenderer = NULL;
+SDL_Texture *gTexture = NULL;
+#endif
                                    
 int main(int argc, char* args[]) 
 {
