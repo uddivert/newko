@@ -7,11 +7,11 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 SDL_Window *mainWindow = NULL;
+SDL_Surface *screenSurface = NULL; 
 
 /** if using software renderer*/
 #ifdef SOFT_RENDER
 SDL_Surface *mainScreenSurface = NULL;
-SDL_Surface *screenSurface = NULL; 
 #endif
 
 #ifdef HARD_RENDER
@@ -35,6 +35,7 @@ int main(int argc, char* args[])
                 nQuit = false;
             } else if (e.type == SDL_WINDOWEVENT) {
                 //Apply the image
+                #ifdef SOFT_RENDER
                 SDL_Rect stretchRect;
                 stretchRect.x = 0;
                 stretchRect.y = 0;
@@ -43,6 +44,16 @@ int main(int argc, char* args[])
                 SDL_BlitScaled(screenSurface, NULL, mainScreenSurface, &stretchRect );
                 //Update the surface
                 SDL_UpdateWindowSurface(mainWindow);
+                #endif
+                #ifdef HARD_RENDER
+                SDL_RenderClear(gRenderer);
+
+                //Render texture to screen
+                SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);
+
+                //Update screen
+                SDL_RenderPresent(gRenderer);
+                #endif
             } // else
         } // while
     } // else

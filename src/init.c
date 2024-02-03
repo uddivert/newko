@@ -21,17 +21,16 @@ bool init()
             #ifdef SOFT_RENDER
             /* create surface context and send to main window*/
             mainScreenSurface = SDL_GetWindowSurface(mainWindow);
-            #elif HARD_RENDER
-            gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+            #endif
+            #ifdef HARD_RENDER
+            gRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
             if( gRenderer == NULL ) {
                 printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-                success = false;
+                init_flag = false;
             } else {
                 //Initialize renderer color
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
             } // else
-            #else 
-            init_flag = false;
             #endif
         } // else
     } // else
