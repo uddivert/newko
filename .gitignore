@@ -56,3 +56,9 @@ nameless.c
  .cache/
  build/
  Debug/
+
+.cache/clangd/index/
+
+build/
+
+Debug/
