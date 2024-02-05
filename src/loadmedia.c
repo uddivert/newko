@@ -1,3 +1,5 @@
+#include <SDL2/SDL_error.h>
+#include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string.h>
 #include "sdl_resources.h"
@@ -46,12 +48,15 @@ SDL_Surface* loadSurface(char *path)
         loadedSurface = SDL_LoadBMP(path);
     } else if (strcmp("png", extension) == 0) {
         loadedSurface = IMG_Load(path);
+        if (loadedSurface == NULL) {
+            printf("Loaded Surface is null\nIMGERROR: %s\n", IMG_GetError());
+        } // if
     } else {
         printf("Unable to load image\n");
     } // else
     optimizedSurface = SDL_ConvertSurface(loadedSurface, mainScreenSurface -> format,0);
     if (optimizedSurface == NULL) {
-        printf("Unable to optimize image\n");
+        printf("Unable to optimize image\n%s\n", SDL_GetError());
     } // if
     //Get rid of old loaded surface
     SDL_FreeSurface(loadedSurface);
