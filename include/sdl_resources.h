@@ -1,9 +1,11 @@
 #ifndef SDL_RESOURCES_H
 #define SDL_RESOURCES_H
-#define HARD_RENDER
+#define SOFT_RENDER
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_surface.h>
 #include <stdbool.h>
 
 // header file contents go here

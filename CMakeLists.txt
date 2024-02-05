@@ -30,6 +30,12 @@ find_package(SDL2 REQUIRED)
 # Link SDL2
 target_link_libraries(SDL_Project PRIVATE SDL2)
 
+# Find SDL_image package
+find_package(SDL_image REQUIRED)
+
+# Link SDL_image
+target_link_libraries(SDL_Project PRIVATE SDL_image)
+
 # Copy resources to build directory
 file(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
 

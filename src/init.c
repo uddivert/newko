@@ -18,6 +18,12 @@ bool init()
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
         } else {
             init_flag = true;
+            int imgFlags = IMG_INIT_PNG;
+            if( !( IMG_Init( imgFlags ) & imgFlags ) )
+            {
+                printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+                init_flag = false;
+            }
             #ifdef SOFT_RENDER
             /* create surface context and send to main window*/
             mainScreenSurface = SDL_GetWindowSurface(mainWindow);
@@ -29,7 +35,7 @@ bool init()
                 init_flag = false;
             } else {
                 //Initialize renderer color
-                SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+                SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF); // black
             } // else
             #endif
         } // else
