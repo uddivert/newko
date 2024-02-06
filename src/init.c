@@ -19,9 +19,9 @@ bool init()
         } else {
             init_flag = true;
             int imgFlags = IMG_INIT_PNG;
-            if( !( IMG_Init( imgFlags ) & imgFlags ) )
+            if (!(IMG_Init(imgFlags) & imgFlags))
             {
-                printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+                printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
                 init_flag = false;
             }
             #ifdef SOFT_RENDER
@@ -30,8 +30,8 @@ bool init()
             #endif
             #ifdef HARD_RENDER
             gRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
-            if( gRenderer == NULL ) {
-                printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+            if (gRenderer == NULL) {
+                printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
                 init_flag = false;
             } else {
                 //Initialize renderer color

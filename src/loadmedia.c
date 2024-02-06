@@ -27,7 +27,8 @@ bool loadmedia(void)
     #endif
     #ifdef HARD_RENDER
     gTexture = loadTexture
-        ("./resources/hello_world.bmp");
+        //("./resources/hello_world.bmp");
+        ("./resources/alert.png");
     if (gTexture == NULL) {
         printf("Unable to load Texture! SDL Error: %s\n",
             SDL_GetError());
@@ -52,7 +53,7 @@ SDL_Surface* loadSurface(char *path)
             printf("Loaded Surface is null\nIMGERROR: %s\n", IMG_GetError());
         } // if
     } else {
-        printf("Unable to load image\n");
+        printf("Unable to load image\n%s\n",SDL_GetError());
     } // else
     optimizedSurface = SDL_ConvertSurface(loadedSurface, mainScreenSurface -> format,0);
     if (optimizedSurface == NULL) {
@@ -68,17 +69,24 @@ SDL_Surface* loadSurface(char *path)
 SDL_Texture* loadTexture(char *path) 
 {
     SDL_Texture *newTexture = NULL;
-    SDL_Surface* screenSurface = SDL_LoadBMP(path);
-    if (screenSurface == NULL) {
-        printf( "Unable to load image! SDL Error: %s\n",
-            SDL_GetError() );
-    } else {
-        newTexture = SDL_CreateTextureFromSurface(gRenderer, screenSurface);
-        if (newTexture == NULL) {
-            printf("Error creating texture.%s: ", SDL_GetError());
+    SDL_Surface* screenSurface = NULL;
+    const char *extension = getFileExtension(path);
+    if (strcmp("bmp", extension) == 0) {
+        screenSurface = SDL_LoadBMP(path);
+    } else if (strcmp("png", extension) == 0) {
+        screenSurface = IMG_Load(path);
+        if (screenSurface == NULL) {
+            printf("Loaded Surface is null\nIMGERROR: %s\n", IMG_GetError());
         } // if
-        SDL_FreeSurface(screenSurface);
+    } else {
+        printf("Unable to load image\n%s\n",SDL_GetError());
     } // else
+
+    newTexture = SDL_CreateTextureFromSurface(gRenderer, screenSurface);
+    if (newTexture == NULL) {
+        printf("Error creating texture.%s: ", SDL_GetError());
+    } // if
+    SDL_FreeSurface(screenSurface);
     return newTexture;
 } // SDL_ Texture
 #endif

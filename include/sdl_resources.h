@@ -1,6 +1,6 @@
 #ifndef SDL_RESOURCES_H
 #define SDL_RESOURCES_H
-#define SOFT_RENDER
+#define HARD_RENDER
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
