@@ -45,12 +45,10 @@ int main(int argc, char* args[])
                 SDL_UpdateWindowSurface(mainWindow);
                 #endif
                 #ifdef HARD_RENDER
-                SDL_RenderClear(gRenderer);
-
-                //Render texture to screen
                 SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);
-
                 //Update screen
+                struct mesh cube;
+                struct mesh* cubePtr = MakeCube(&cube);
                 SDL_RenderPresent(gRenderer);
                 #endif
             } // else

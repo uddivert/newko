@@ -8,6 +8,19 @@
 #include <SDL2/SDL_surface.h>
 #include <stdbool.h>
 
+struct vec3d
+{
+    float x, y, z;
+};
+
+struct triangle {
+    struct vec3d p[3];
+}; // triangle
+
+struct mesh {
+    struct triangle *tris;
+}; //mesh
+
 // header file contents go here
 bool init(void);
 

@@ -89,5 +89,88 @@ SDL_Texture* loadTexture(char *path)
     SDL_FreeSurface(screenSurface);
     return newTexture;
 } // SDL_ Texture
+
+struct mesh* MakeCube(struct mesh* meshCube) {
+    meshCube->tris = (struct triangle*)malloc(12 * sizeof(struct triangle)); // allocate 12 triangles
+    
+    if (meshCube->tris == NULL) {
+        // Handle memory allocation failure
+        return NULL;
+    }
+
+    // SOUTH
+    meshCube->tris[0] = (struct triangle) {
+        .p = {
+            {0, 0, 0}, {0, 1, 0}, {1, 1, 0}
+        }
+    };
+
+    meshCube->tris[1] = (struct triangle) {
+        .p = {
+            {0, 0, 0}, {1, 1, 0}, {1, 0, 0}
+        }
+    };
+    // EAST
+    meshCube->tris[2] = (struct triangle) {
+        .p = {
+            {1, 0, 0}, {1, 1, 0}, {1, 1, 1}
+        }
+    };
+
+    meshCube->tris[3] = (struct triangle) {
+        .p = {
+            {1, 0, 0}, {1, 1, 1}, {1, 0, 1}
+        }
+    };
+    // NORTH
+    meshCube->tris[4] = (struct triangle) {
+        .p = {
+            {1, 0, 1}, {1, 1, 1}, {0, 1, 1}
+        }
+    };
+
+    meshCube->tris[5] = (struct triangle) {
+        .p = {
+            {1, 0, 1}, {0, 1, 1}, {0, 0, 1}
+        }
+    };
+    // WEST
+    meshCube->tris[6] = (struct triangle) {
+        .p = {
+            {0, 0, 1}, {0, 1, 1}, {0, 1, 0}
+        }
+    };
+
+    meshCube->tris[7] = (struct triangle) {
+        .p = {
+            {0, 0, 1}, {0, 1, 0}, {0, 0, 0}
+        }
+    };
+    // TOP
+    meshCube->tris[8] = (struct triangle) {
+        .p = {
+            {0, 1, 0}, {0, 1, 1}, {1, 1, 1}
+        }
+    };
+
+    meshCube->tris[9] = (struct triangle) {
+        .p = {
+            {0, 1, 1}, {1, 1, 1}, {1, 1, 0}
+        }
+    };
+    // BOTTOM 
+    meshCube->tris[10] = (struct triangle) {
+        .p = {
+            {1, 0, 1}, {0, 0, 1}, {0, 0, 0}
+        }
+    };
+
+    meshCube->tris[11] = (struct triangle) {
+        .p = {
+            {1, 0, 1}, {0, 0, 0}, {1, 0, 0}
+        }
+    };
+    return meshCube;
+} 
 #endif
 
